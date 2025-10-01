@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SANVESH SECURITIES</title>
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-color: #000;
+        color: #00ffff;
+    }
+    header {
+        text-align: center;
+        padding: 20px;
+        background-color: #111;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    header h1 {
+        margin: 10px 0 5px 0;
+        color: #00ffff;
+    }
+    header p {
+        color: #ccc;
+        font-size: 14px;
+        margin: 2px;
+    }
+    header img {
+        width: 120px; /* adjust size as needed */
+        height: auto;
+        border-radius: 10px;
+        margin-bottom: 10px;
+    }
+    section {
+        padding: 20px;
+        border-bottom: 1px solid #333;
+    }
+    h2 {
+        color: #00ffff;
+    }
+    ul {
+        list-style-type: none;
+        padding-left: 0;
+    }
+    li {
+        margin: 5px 0;
+        background-color: #111;
+        padding: 10px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    li:hover {
+        background-color: #222;
+    }
+    /* Modal styles */
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 10;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0,0,0,0.8);
+    }
+    .modal-content {
+        background-color: #111;
+        margin: 10% auto;
+        padding: 20px;
+        border: 1px solid #00ffff;
+        width: 80%;
+        color: #00ffff;
+        border-radius: 10px;
+    }
+    .close {
+        color: #00ffff;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+    .close:hover {
+        color: #ccc;
+    }
+</style>
+</head>
+<body>
+
+<header>
+    <img src="https://i.postimg.cc/ZKxYdDJs/Gemini-Generated-Image-ilhic7ilhic7ilhi.png" alt="Sanvesh Securities Logo">
+    <h1>SANVESH SECURITIES</h1>
+    <p>Founded in 2025 by SANVESH ROY</p>
+    <p>Contact: 9505364673 | Email: sanveshmore8@gmail.com</p>
+    <p>Started as IT company, fulfilling Sanvesh's dream</p>
+</header>
+
+<section id="about">
+    <h2>About</h2>
+    <p>SANVESH SECURITIES is a visionary IT company started by Sanvesh Roy in 2025. Our focus is to deliver innovative IT solutions while nurturing Sanvesh's dream of entrepreneurship.</p>
+</section>
+
+<section id="projects-done">
+    <h2>Completed Projects</h2>
+    <ul id="completed-projects">
+        <!-- Completed projects injected here -->
+    </ul>
+</section>
+
+<section id="current-projects">
+    <h2>Current Working Projects</h2>
+    <ul id="working-projects">
+        <!-- Current projects injected here -->
+    </ul>
+</section>
+
+<!-- Modal -->
+<div id="projectModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2 id="modalTitle"></h2>
+        <p id="modalDetails"></p>
+    </div>
+</div>
+
+<script>
+    // Projects with full details
+    const completedProjects = [
+        {title: "Project Alpha", details: "Financial Management System developed in 2025, helps small businesses manage accounts, invoices, and budgets efficiently."},
+        {title: "Project Beta", details: "Inventory Tracker built for warehouses, tracks stock levels in real-time and generates automated alerts."},
+        {title: "Project Gamma", details: "Customer Support App with ticketing system and live chat, improving response time by 50%."}
+    ];
+
+    const workingProjects = [
+        {title: "Project Delta", details: "AI Security Scanner that detects vulnerabilities in real-time and provides automated solutions."},
+        {title: "Project Epsilon", details: "Mobile Banking App under development, designed for secure and fast digital transactions for end-users."}
+    ];
+
+    function createProjectList(projects, listId) {
+        const list = document.getElementById(listId);
+        projects.forEach((project) => {
+            const li = document.createElement("li");
+            li.textContent = project.title;
+            li.addEventListener("click", () => openModal(project));
+            list.appendChild(li);
+        });
+    }
+
+    function openModal(project) {
+        document.getElementById("modalTitle").textContent = project.title;
+        document.getElementById("modalDetails").textContent = project.details;
+        document.getElementById("projectModal").style.display = "block";
+    }
+
+    function closeModal() {
+        document.getElementById("projectModal").style.display = "none";
+    }
+
+    document.querySelector(".close").addEventListener("click", closeModal);
+
+    window.addEventListener("click", (event) => {
+        if(event.target == document.getElementById("projectModal")) {
+            closeModal();
+        }
+    });
+
+    // Initialize lists
+    createProjectList(completedProjects, "completed-projects");
+    createProjectList(workingProjects, "working-projects");
+</script>
+
+</body>
+</html>
