@@ -29,7 +29,7 @@
         margin: 2px;
     }
     header img {
-        width: 120px; /* adjust size as needed */
+        width: 120px;
         height: auto;
         border-radius: 10px;
         margin-bottom: 10px;
@@ -86,9 +86,63 @@
     .close:hover {
         color: #ccc;
     }
+
+    /* -------- Intro Curtain Animation -------- */
+    #intro {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+        overflow: hidden;
+    }
+    #intro img {
+        width: 250px;
+        height: auto;
+        animation: fadeIn 1.5s ease-in-out;
+    }
+    .curtain {
+        position: absolute;
+        top: 0;
+        width: 50%;
+        height: 100%;
+        background: #000;
+        z-index: 1001;
+    }
+    .left-curtain {
+        left: 0;
+        animation: slideLeft 2s forwards ease-in-out 2s;
+    }
+    .right-curtain {
+        right: 0;
+        animation: slideRight 2s forwards ease-in-out 2s;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: scale(0.8);}
+        to { opacity: 1; transform: scale(1);}
+    }
+    @keyframes slideLeft {
+        to { transform: translateX(-100%); }
+    }
+    @keyframes slideRight {
+        to { transform: translateX(100%); }
+    }
 </style>
 </head>
 <body>
+
+<!-- Intro Screen -->
+<div id="intro">
+    <img src="https://i.postimg.cc/ZKxYdDJs/Gemini-Generated-Image-ilhic7ilhic7ilhi.png" alt="Sanvesh Securities Logo">
+    <div class="curtain left-curtain"></div>
+    <div class="curtain right-curtain"></div>
+</div>
 
 <header>
     <img src="https://i.postimg.cc/ZKxYdDJs/Gemini-Generated-Image-ilhic7ilhic7ilhi.png" alt="Sanvesh Securities Logo">
@@ -105,16 +159,12 @@
 
 <section id="projects-done">
     <h2>Completed Projects</h2>
-    <ul id="completed-projects">
-        <!-- Completed projects injected here -->
-    </ul>
+    <ul id="completed-projects"></ul>
 </section>
 
 <section id="current-projects">
     <h2>Current Working Projects</h2>
-    <ul id="working-projects">
-        <!-- Current projects injected here -->
-    </ul>
+    <ul id="working-projects"></ul>
 </section>
 
 <!-- Modal -->
@@ -170,6 +220,11 @@
     // Initialize lists
     createProjectList(completedProjects, "completed-projects");
     createProjectList(workingProjects, "working-projects");
+
+    // Hide intro after animation
+    setTimeout(() => {
+        document.getElementById("intro").style.display = "none";
+    }, 4500); // 4.5 sec
 </script>
 
 </body>
